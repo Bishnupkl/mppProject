@@ -6,5 +6,8 @@ import java.util.List;
 
 public class Member extends Person {
     private List<CheckoutRecord> checkoutRecords;
-    public Member(){}
+    public Member()
+    {
+        super("","");
+    }
 }
