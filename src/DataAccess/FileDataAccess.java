@@ -4,7 +4,6 @@ import java.io.*;
 
 public class FileDataAccess{
 
-
     public Object read(String fileName) {
         FileInputStream file = null;
         try {
