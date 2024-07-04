@@ -1,15 +1,27 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import Business.Person.Administrator;
+import Business.Person.Librarian;
+import Business.Person.User;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        addDefaultUser();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        User u = User.login("librarian","123");
+    }
+
+    private static void addDefaultUser()
+    {
+        User administrator = new User("admin", "123", new ArrayList<>(Arrays.asList(new Administrator())));
+
+        User librarian = new User("librarian","123", new ArrayList<>(Arrays.asList(new Librarian())));
+
+//        HashSet<User> users = new HashSet<>();
+//        users.add(administrator);
+//        users.add(librarian);
+
+        administrator.addDefaultUser(new ArrayList<>(Arrays.asList(administrator, librarian)));
     }
 }
