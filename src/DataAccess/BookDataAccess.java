@@ -2,10 +2,23 @@ package DataAccess;
 
 import Business.Book.Book;
 
-public class BookDataAccess extends FileDataAccess{
+import java.util.ArrayList;
+import java.util.List;
 
-    public void readBook()
-    {
-        Book book =  (Book)super.read("book.bin");
+public  class BookDataAccess extends FileDataAccess {
+
+    public List<Book> readBooks() {
+        List<Book> books = (List<Book>) super.read("book.bin");
+        if(books==null){
+            return new ArrayList<>();
+        }
+        return books;
     }
+
+    public void createNewBook(List<Book> books){
+
+
+    }
+
+
 }
