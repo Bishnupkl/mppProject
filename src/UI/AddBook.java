@@ -6,9 +6,10 @@ import java.awt.*;
 public class AddBook  extends JFrame{
     private JPanel AddBookPane;
     private JTextField isbn;
-    private JTextField name;
+    private JTextField authors;
     private JTextField noOfCopies;
     private JButton addButton;
+    private JTextField bookName;
 
     public AddBook() {
         setVisible(true);
@@ -32,6 +33,7 @@ public class AddBook  extends JFrame{
             }
         });
     }
+
 
 
 }
