@@ -1,6 +1,20 @@
 package Business.Book;
 
-public class BookCopy {
+import java.io.Serializable;
+
+public class BookCopy implements Serializable {
+
+    private String id;
     private Book book;
-    public BookCopy(){}
+    public BookCopy(Book newBook){
+        this.id= String.valueOf(Math.random());
+        this.book= newBook;
+    }
+
+    @Override
+    public String toString() {
+        return "BookCopy{" +
+                "id='" + id +
+                '}';
+    }
 }
