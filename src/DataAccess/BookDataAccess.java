@@ -7,7 +7,13 @@ import java.util.List;
 
 public  class BookDataAccess extends FileDataAccess {
 
-    public List<Book> readBooks() {
+    private static BookDataAccess bda=new BookDataAccess();
+
+    public static List<Book> readBooks() {
+       return bda._readBooks();
+    }
+
+    private List<Book> _readBooks(){
         List<Book> books = (List<Book>) super.read("book.bin");
         if(books==null){
             return new ArrayList<>();
@@ -15,10 +21,16 @@ public  class BookDataAccess extends FileDataAccess {
         return books;
     }
 
-    public void createNewBook(List<Book> books){
 
-
+    public static void createNewBook(List<Book> books){
+        bda._createNewBook(books);
     }
+
+
+    public void _createNewBook(List<Book> books){
+        write("book.bin",books);
+    }
+
 
 
 }
