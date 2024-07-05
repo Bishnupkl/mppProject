@@ -1,6 +1,9 @@
 package DataAccess;
 
 import Business.Book.Book;
+import Business.Book.BookCopy;
+import Business.Checkout.CheckoutRecord;
+import Business.Person.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +60,35 @@ public  class BookDataAccess extends FileDataAccess {
             }
         }
         write(fileName,books);
+    }
+
+
+
+    public static void addCheckoutRecord(CheckoutRecord checkoutRecord)
+    {
+        instance._addCheckoutRecord(checkoutRecord);
+    }
+
+    private void _addCheckoutRecord(CheckoutRecord checkoutRecord)
+    {
+
+        List<Book> books = readBooks();
+        for(Book book : books)
+        {
+            if(book.getIsbn().equals(checkoutRecord.getBookCopy().getBook().getIsbn()))
+            {
+                for(BookCopy bc : book.getBookCopies())
+                {
+                    if(bc.getId().equals(checkoutRecord.getBookCopy().getId()))
+                    {
+                        bc.setCheckoutRecord(checkoutRecord);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        super.write(fileName, books);
     }
 
 }

@@ -19,4 +19,8 @@ public class CheckoutRecord implements Serializable {
         this.member = member;
         this.bookCopy = bookCopy;
     }
+
+    public BookCopy getBookCopy() {
+        return bookCopy;
+    }
 }
