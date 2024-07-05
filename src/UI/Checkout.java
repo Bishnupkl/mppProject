@@ -15,7 +15,7 @@ public class Checkout  extends  JFrame{
 
     public Checkout() {
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("New Member Form");
         setSize(480, 400);
         setLocationRelativeTo(null);

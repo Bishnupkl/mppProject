@@ -14,7 +14,7 @@ public class MemberSearch extends JFrame {
 
     public MemberSearch() {
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Login Form");
         setSize(600, 400);
         setLocationRelativeTo(null);
