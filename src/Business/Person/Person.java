@@ -15,4 +15,20 @@ public class Person implements Serializable {
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public Address getAddress() {
+        return this.address;
+    }
 }

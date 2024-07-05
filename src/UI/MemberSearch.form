@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="memberSearchPanel" layout-manager="GridLayoutManager" row-count="5" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="20" bottom="10" right="20"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="633" height="400"/>
     </constraints>
     <properties>
       <background color="-1049919"/>
@@ -19,7 +19,7 @@
           <text value="Member Id"/>
         </properties>
       </component>
-      <component id="72af2" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="72af2" class="javax.swing.JTextField" binding="memberIdField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -56,19 +56,6 @@
           <text value="Name:"/>
         </properties>
       </component>
-      <component id="5139a" class="javax.swing.JButton" binding="pintButton" default-binding="true">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-350057"/>
-          <enabled value="false"/>
-          <font name="DialogInput" size="20" style="1"/>
-          <foreground color="-1733246"/>
-          <hideActionText value="true"/>
-          <text value="Pint"/>
-        </properties>
-      </component>
       <component id="cacba" class="javax.swing.JLabel" binding="name">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -84,6 +71,14 @@
         </constraints>
         <properties>
           <text value="Search"/>
+        </properties>
+      </component>
+      <component id="e0d32" class="javax.swing.JButton" binding="printCheckoutRecordButton" default-binding="true">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="print checkout record"/>
         </properties>
       </component>
     </children>
