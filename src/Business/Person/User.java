@@ -1,7 +1,8 @@
 package Business.Person;
-
 import DataAccess.UserDataAccess;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 public class User extends Person{
@@ -14,15 +15,26 @@ public class User extends Person{
 
     private String password;
 
-    public User(String id, String password, List<UserRole> userRoles)
+    private User(String id, String password, List<UserRole> userRoles)
     {
-        super("","");
+        super("","", "", new Address("", "", "", 123456));
         this.id  = id;
         this.password = password;
+        this.userRoles = userRoles;
     }
 
-    public void addDefaultUser(List<User> users)
+//    public static void addDefaultUser(List<User> users)
+//    {
+//        UserDataAccess.addUsers(users);
+//    }
+
+    public static void addDefaultUsers(List<UserInfoWrapper> defaultUsers)
     {
+        List<User> users = new ArrayList<>();
+        for(UserInfoWrapper info: defaultUsers)
+        {
+            users.add(new User(info.id, info.password, info.userRoles));
+        }
         UserDataAccess.addUsers(users);
     }
 
@@ -39,5 +51,17 @@ public class User extends Person{
     private static boolean verifyCredential(String password, User user)
     {
         return user.password.equals(password);
+    }
+
+    public static class UserInfoWrapper{
+        private String id;
+        private String password;
+        private List<UserRole> userRoles;
+        public UserInfoWrapper(String id, String password, List<UserRole> userRoles)
+        {
+            this.id  = id;
+            this.password = password;
+            this.userRoles = userRoles;
+        }
     }
 }
