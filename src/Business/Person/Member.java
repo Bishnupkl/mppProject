@@ -4,19 +4,19 @@ import Business.Book.Book;
 import Business.Book.BookCopy;
 import Business.Checkout.CheckoutRecord;
 import Business.Checkout.CheckoutRecordFactory;
+import Business.HelperFactory;
 import Business.MessageConstant;
 import Business.StatusInfoWrapper;
 import DataAccess.MemberDataAccess;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Member extends Person {
     private String memberId;
     private List<CheckoutRecord> checkoutRecords = new ArrayList<>();
 
-    private Member(String memberId, String firstName, String lastName, String telephone, Address address)
+    Member(String memberId, String firstName, String lastName, String telephone, Address address)
     {
         super(firstName, lastName, telephone, address);
         this.memberId = memberId;
@@ -28,8 +28,7 @@ public class Member extends Person {
 
     public static Member addMember(String memberId, String firstName, String lastName, String street, String city, String state, String zip, String telephone)
     {
-        Address address = new Address(street, city, state, zip);
-        Member member = new Member(memberId, firstName, lastName, telephone, address);
+        Member member = PersonFactory.generateMember(memberId, firstName, lastName, street, city, state, zip, telephone);
         MemberDataAccess.addMember(member);
         return member;
     }
@@ -62,7 +61,7 @@ public class Member extends Person {
         Book.addCheckoutRecord(checkoutRecord);
 
 
-        return new StatusInfoWrapper(true, updatedMember, null);
+        return HelperFactory.generateStatusInfo(true, updatedMember, null);
     }
 
     private static StatusInfoWrapper checkMemberExists(String memberId)
@@ -70,10 +69,10 @@ public class Member extends Person {
         Member member = MemberDataAccess.readMember(memberId);
         if(member == null)
         {
-            return new StatusInfoWrapper(false, null, MessageConstant.MEMBER_NOT_FOUND);
+            return HelperFactory.generateStatusInfo(false, null, MessageConstant.MEMBER_NOT_FOUND);
         }
         else {
-            return new StatusInfoWrapper(true, member, null);
+            return HelperFactory.generateStatusInfo(true, member, null);
         }
     }
 

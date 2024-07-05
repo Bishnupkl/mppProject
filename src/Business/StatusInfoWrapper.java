@@ -9,7 +9,7 @@ public class StatusInfoWrapper {
         return message;
     }
 
-    public StatusInfoWrapper(boolean status, Object value, String message) {
+    StatusInfoWrapper(boolean status, Object value, String message) {
         this.status = status;
         this.value = value;
         this.message = message;
