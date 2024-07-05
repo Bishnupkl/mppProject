@@ -19,7 +19,7 @@ public class Book implements Serializable {
     private List<BookCopy> bookCopies = new ArrayList<>();
     private List<Author> authors = new ArrayList<>();
 
-    public Book(String newIsbn, String newTitle, int newBorrowDuration, Author newAuthor) {
+    private Book(String newIsbn, String newTitle, int newBorrowDuration, Author newAuthor) {
         this.isbn = newIsbn;
         this.title = newTitle;
         this.borrowDuration = newBorrowDuration;
@@ -29,7 +29,7 @@ public class Book implements Serializable {
         this.authors.add(newAuthor);
     }
 
-    public Book(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
+    private Book(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
         this.isbn = newIsbn;
         this.title = newTitle;
         this.borrowDuration = newBorrowDuration;
@@ -54,7 +54,8 @@ public class Book implements Serializable {
         }
     }
 
-    public static StatusInfoWrapper addBook(Book newBook) {
+    public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
+        Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
         StatusInfoWrapper result = checkBookExist(newBook.getIsbn());
         System.out.println(result.getValue());
         if (result.getStatus() == false) {
@@ -99,21 +100,20 @@ public class Book implements Serializable {
         this.bookCopies.add(bookCopy);
     }
 
-    public StatusInfoWrapper getAvailableCopy(String isbn){
+    public StatusInfoWrapper getAvailableCopy(String isbn) {
         Book book = BookDataAccess.readBook(isbn);
-        if(book==null){
-            return new StatusInfoWrapper(false,null,"Book does not exist in system");
-        }else{
-            List<BookCopy> copies=book.getBookCopies();
-            for (BookCopy copy:copies){
-                if(copy.getCheckoutRecord().equals(null)){
-                    return new StatusInfoWrapper(true,copy,"success");
-                } else if (!copy.getCheckoutRecord().getReturnDate().equal(null)) {
-                    return new StatusInfoWrapper(true,copy,"success");
-
+        if (book == null) {
+            return new StatusInfoWrapper(false, null, "Book does not exist in system");
+        } else {
+            List<BookCopy> copies = book.getBookCopies();
+            for (BookCopy copy : copies) {
+                if (copy.getCheckoutRecord().equals(null)) {
+                    return new StatusInfoWrapper(true, copy, "success");
+                } else if (!copy.getCheckoutRecord().getReturnDate().equals(null)) {
+                    return new StatusInfoWrapper(true, copy, "success");
                 }
             }
-            return new StatusInfoWrapper(false,null,"No Copy available");
+            return new StatusInfoWrapper(false, null, "No Copy available");
         }
     }
 
