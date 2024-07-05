@@ -52,16 +52,17 @@ public class Book implements Serializable {
         return false;
     }
 
-    public static void addBook(Book newBook) {
+    public static boolean addBook(Book newBook) {
         if (!checkBookExist(newBook.getIsbn())) {
             BookDataAccess bda = new BookDataAccess();
             List<Book> dbBooks = bda.readBooks();
             dbBooks.add(newBook);
             bda.write("book.bin",dbBooks);
             System.out.printf("Add Book Success");
-            return;
+            return true;
         }
         System.out.printf("Book exist");
+        return false;
     }
 
     public static void addCopy(String newIsbn) {
