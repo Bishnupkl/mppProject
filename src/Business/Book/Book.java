@@ -68,7 +68,6 @@ public class Book implements Serializable {
 
     public static StatusInfoWrapper addCopy(String newIsbn) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
-        System.out.println(result.getStatus());
         if (result.getStatus()) {
             Book book = (Book) result.getValue();
             book.setBookCopies(new BookCopy(book));
