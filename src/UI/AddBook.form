@@ -72,6 +72,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="DialogInput" size="20" style="1"/>
           <model>
             <item value="Author1"/>
             <item value="Author2"/>

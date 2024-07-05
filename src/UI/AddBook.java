@@ -26,7 +26,7 @@ public class AddBook extends JFrame {
 
     private int borrowDuraration;
 
-    public AddBook() {
+    public AddBook(){
         setVisible(true);
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Add Book");
@@ -34,6 +34,8 @@ public class AddBook extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setContentPane(AddBookPane);
+
+        list1.setSelectedIndex(0);
 
         buttonGroup.add(a21DaysRadioButton);
         buttonGroup.add(a7DaysRadioButton);
@@ -67,6 +69,15 @@ public class AddBook extends JFrame {
                 for (String a : authors) {
                     authorsObject.add(new Author(a, "John", "011222333", address, "Master", "Good Author"));
                 }
+
+//                if (authorsObject.size() == 0) {
+//                    authorsObject.add(new Author("Author", "John", "011222333", address, "Master", "Good Author"));
+//
+//                }
+
+
+                System.out.println(authorsObject);
+
                 StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject);
                 JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
                 isbn.setText("");
@@ -85,14 +96,12 @@ public class AddBook extends JFrame {
          */
 
 
-
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 AddBook mf = new AddBook();
             }
         });
     }
-
 
 
 }
