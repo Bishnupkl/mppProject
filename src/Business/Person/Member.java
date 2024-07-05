@@ -1,7 +1,9 @@
 package Business.Person;
 
 import Business.Book.Book;
+import Business.Book.BookCopy;
 import Business.Checkout.CheckoutRecord;
+import Business.Checkout.CheckoutRecordFactory;
 import Business.MessageConstant;
 import Business.StatusInfoWrapper;
 import DataAccess.MemberDataAccess;
@@ -11,8 +13,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Member extends Person {
-    private final String memberId;
-    private final List<CheckoutRecord> checkoutRecords = new ArrayList<>();
+    private String memberId;
+    private List<CheckoutRecord> checkoutRecords = new ArrayList<>();
 
     private Member(String memberId, String firstName, String lastName, String telephone, Address address)
     {
@@ -30,18 +32,28 @@ public class Member extends Person {
 
     public static StatusInfoWrapper checkout(String memberId, String isbn)
     {
-        StatusInfoWrapper result = verifyMember(memberId);
-        if(result.getStatus() == false)
+        StatusInfoWrapper memberResult = checkMemberExists(memberId);
+        if(memberResult.getStatus() == false)
         {
-            return result;
+            return memberResult;
         }
 
+        StatusInfoWrapper bookResult = Book.checkBookExist(isbn);
+        if(bookResult.getStatus() == false)
+        {
+            return bookResult;
+        }
 
+        Member member = (Member)memberResult.getValue();
+        Book book = (Book)bookResult.getValue();
+        CheckoutRecord checkoutRecord = CheckoutRecordFactory.createCheckoutRecord(member, new BookCopy(null));
+
+        MemberDataAccess.addCheckoutRecord(checkoutRecord);
         return new StatusInfoWrapper(true, null, null);
 
     }
 
-    private static StatusInfoWrapper verifyMember(String memberId)
+    private static StatusInfoWrapper checkMemberExists(String memberId)
     {
         Member member = MemberDataAccess.readMember(memberId);
         if(member == null)
@@ -62,6 +74,11 @@ public class Member extends Person {
     }
 
     public List<CheckoutRecord> getCheckoutRecords() {
-        return Collections.unmodifiableList(this.checkoutRecords);
+        return this.checkoutRecords;
+    }
+
+    public void setCheckoutRecords(List<CheckoutRecord> checkoutRecords)
+    {
+        this.checkoutRecords = checkoutRecords;
     }
 }
