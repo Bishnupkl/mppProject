@@ -48,6 +48,10 @@ public class User extends Person{
         return user;
     }
 
+    public List<UserRole> getRole() {
+        return this.userRoles;
+    }
+
     private static boolean verifyCredential(String password, User user)
     {
         return user.password.equals(password);
