@@ -14,4 +14,20 @@ public class Address implements Serializable {
         this.state = state;
         this.zip = zip;
     }
+
+    public String getStreet() {
+        return this.street;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public String getState() {
+        return this.state;
+    }
+
+    public String getZip() {
+        return this.zip;
+    }
 }

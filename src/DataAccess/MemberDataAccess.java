@@ -33,9 +33,9 @@ public class MemberDataAccess extends FileDataAccess{
         return members;
     }
 
-    public static void addMember(Member person)
+    public static void addMember(Member member)
     {
-        instance._addMember(person);
+        instance._addMember(member);
     }
 
     private void _addMember(Member member)

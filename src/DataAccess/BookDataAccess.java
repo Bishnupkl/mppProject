@@ -56,7 +56,9 @@ public  class BookDataAccess extends FileDataAccess {
         {
             if(b.getIsbn().equals(book.getIsbn()))
             {
-                b = book;
+                b.getBookCopies().clear();
+                b.getBookCopies().addAll(book.getBookCopies());
+                break;
             }
         }
         write(fileName,books);
