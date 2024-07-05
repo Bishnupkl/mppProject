@@ -64,7 +64,7 @@
         </constraints>
         <properties>
           <font name="DialogInput" size="20" style="1"/>
-          <foreground color="-2104859"/>
+          <foreground color="-16777216"/>
           <text value="Checkout"/>
         </properties>
       </component>
