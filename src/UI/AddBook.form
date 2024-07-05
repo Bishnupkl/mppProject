@@ -94,7 +94,7 @@
         </constraints>
         <properties>
           <font name="DialogInput" size="20" style="1"/>
-          <text value="Book Available For"/>
+          <text value="Borrow Duration?"/>
         </properties>
       </component>
       <component id="f8829" class="javax.swing.JRadioButton" binding="a21DaysRadioButton" default-binding="true">
