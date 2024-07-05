@@ -17,7 +17,7 @@ public class User extends Person{
 
     private User(String id, String password, List<UserRole> userRoles)
     {
-        super("","", "", new Address("", "", "", 123456));
+        super("","", "", null);
         this.id  = id;
         this.password = password;
         this.userRoles = userRoles;
