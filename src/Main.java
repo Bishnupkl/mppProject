@@ -27,7 +27,7 @@ public class Main {
     {
         List<User.UserInfoWrapper> defaultUsers = new ArrayList<>();
         defaultUsers.add(new User.UserInfoWrapper("admin","123",new ArrayList<>(Arrays.asList(new Administrator()))));
-        defaultUsers.add(new User.UserInfoWrapper("librarian","123",new ArrayList<>(Arrays.asList(new Administrator()))));
+        defaultUsers.add(new User.UserInfoWrapper("librarian","123",new ArrayList<>(Arrays.asList(new Librarian()))));
         defaultUsers.add(new User.UserInfoWrapper("both","123",new ArrayList<>(Arrays.asList(new Administrator(), new Librarian()))));
         User.addDefaultUsers(defaultUsers);
     }
