@@ -27,7 +27,7 @@ public class AddBook extends JFrame {
 
     public AddBook() {
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Add Book");
         setSize(500, 400);
         setLocationRelativeTo(null);
@@ -67,7 +67,6 @@ public class AddBook extends JFrame {
                     authorsObject.add(new Author(a, "John", "011222333", address, "Master", "Good Author"));
                 }
                 StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject);
-
                 JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
                 isbn.setText("");
                 bookName.setText("");

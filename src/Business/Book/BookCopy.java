@@ -25,6 +25,8 @@ public class BookCopy implements Serializable {
 
     public BookCopy(Book newBook){
         this.id= String.valueOf(Math.random());
+        int random=Integer.valueOf((int) (Math.random() * 10000)) ;
+        this.id= String.valueOf(random);
         this.book= newBook;
     }
 

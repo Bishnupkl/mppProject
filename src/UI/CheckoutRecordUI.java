@@ -9,7 +9,7 @@ public class CheckoutRecordUI extends  JFrame{
 
     public CheckoutRecordUI() {
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Login Form");
         setSize(400, 400);
         setLocationRelativeTo(null);
