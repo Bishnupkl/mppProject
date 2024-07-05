@@ -73,7 +73,7 @@ public class MainMenu extends JFrame {
         addBookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                AddBook addBook = new AddBook();
+//                AddBook addBook=new AddBook()
             }
         });
     }
