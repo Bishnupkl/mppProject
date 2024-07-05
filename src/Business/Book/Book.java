@@ -21,6 +21,7 @@ public class Book implements Serializable {
     public int getBorrowDuration() {
         return borrowDuration;
     }
+    public String getTitle() {return this.title;}
 
     private List<BookCopy> bookCopies = new ArrayList<>();
     private List<Author> authors = new ArrayList<>();
