@@ -58,7 +58,6 @@ public class Book implements Serializable {
     }
 
     public static void addBook(Book newBook) {
-
         StatusInfoWrapper result = checkBookExist(newBook.getIsbn());
         if(result.getStatus() == false)
         {
