@@ -31,7 +31,7 @@ public class Checkout  extends  JFrame{
                 if(result.getStatus())
                 {
                     Member m = (Member) result.getValue();
-                    m.getCheckoutRecords();
+                    CheckoutRecordTable.Show(m.getCheckoutRecords());
                 }else{
                     JOptionPane.showMessageDialog(null, result.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
