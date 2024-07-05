@@ -66,14 +66,12 @@ public class AddBook extends JFrame {
                 for (String a : authors) {
                     authorsObject.add(new Author(a, "John", "011222333", address, "Master", "Good Author"));
                 }
-                Book newBook = new Book(isbnValue, name, borrowDuraration, authorsObject);
-                StatusInfoWrapper result = Book.addBook(newBook);
+                StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject);
 
                 JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
                 isbn.setText("");
                 bookName.setText("");
                 list1.clearSelection();
-
 
             }
         });
