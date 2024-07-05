@@ -57,11 +57,15 @@ public class Book implements Serializable {
         }
     }
 
-    public static void addBook(Book newBook) {
+    public static StatusInfoWrapper addBook(Book newBook) {
         StatusInfoWrapper result = checkBookExist(newBook.getIsbn());
+        System.out.println(result.getValue());
         if(result.getStatus() == false)
         {
             BookDataAccess.createNewBook(newBook);
+            return new StatusInfoWrapper(true,null, "Create Book Successful");
+        } else{
+            return new StatusInfoWrapper(false,null, "Book already exist in the system");
         }
     }
 
