@@ -96,15 +96,6 @@ public class Book implements Serializable {
         return null;
     }
 
-    public static void main(String[] args) {
-//        Address address= new Address("4th","fairfield","IOWA","52556");
-//        Author author= new Author("John","Cena","641222333",address,"Good Author","Nice Author");
-//        Book.addBook(new Book("How to","13",7,author));
-//        Book.addCopy("11");
-        List<BookCopy> copies = Book.getBookCopies("5566");
-        System.out.println(copies);
-    }
-
     public void setBookCopies(BookCopy bookCopy) {
         this.bookCopies.add(bookCopy);
     }
