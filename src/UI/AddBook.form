@@ -84,8 +84,6 @@
           <model>
             <item value="Author1"/>
             <item value="Author2"/>
-            <item value="Author3"/>
-            <item value="Author4"/>
           </model>
         </properties>
       </component>
