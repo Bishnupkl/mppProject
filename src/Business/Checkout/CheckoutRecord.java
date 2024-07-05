@@ -16,6 +16,8 @@ public class CheckoutRecord implements Serializable {
     private LocalDate dueDate;
     private LocalDate returnDate;
 
+    public LocalDate getCheckoutDate() {return this.checkoutDate;}
+    public LocalDate getDueDate() {return this.dueDate;}
     public LocalDate getReturnDate() {
         return returnDate;
     }
