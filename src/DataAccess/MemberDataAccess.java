@@ -27,7 +27,10 @@ public class MemberDataAccess extends FileDataAccess{
 
     public List<Member> readMembers()
     {
-        return (List<Member>)super.read(fileName);
+        List<Member> members = (List<Member>)super.read(fileName);
+        if (members == null)
+            members = new ArrayList<>();
+        return members;
     }
 
     public static void addMember(Member person)

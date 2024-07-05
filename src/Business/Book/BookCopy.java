@@ -1,7 +1,6 @@
 package Business.Book;
 
 import Business.Checkout.CheckoutRecord;
-import Business.Checkout.CheckoutRecordFactory;
 
 import java.io.Serializable;
 
@@ -9,14 +8,6 @@ public class BookCopy implements Serializable {
 
     private String id;
     private CheckoutRecord checkoutRecord;
-
-    public void setCheckoutRecord(CheckoutRecord checkoutRecord) {
-        this.checkoutRecord = checkoutRecord;
-    }
-
-    public CheckoutRecord getCheckoutRecord() {
-        return checkoutRecord;
-    }
 
     public String getId() {
         return id;
@@ -26,6 +17,14 @@ public class BookCopy implements Serializable {
     public BookCopy(Book newBook){
         this.id= String.valueOf(Math.random());
         this.book= newBook;
+    }
+
+    public CheckoutRecord getCheckoutRecord() {
+        return checkoutRecord;
+    }
+
+    public void setCheckoutRecord(CheckoutRecord checkoutRecord) {
+        this.checkoutRecord = checkoutRecord;
     }
 
     @Override
