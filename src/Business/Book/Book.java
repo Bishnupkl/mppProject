@@ -55,10 +55,9 @@ public class Book implements Serializable {
     }
 
     public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
-        Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
-        StatusInfoWrapper result = checkBookExist(newBook.getIsbn());
-        System.out.println(result.getValue());
+        StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus() == false) {
+            Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
             BookDataAccess.createNewBook(newBook);
             return new StatusInfoWrapper(true, null, "Create Book Successful");
         } else {

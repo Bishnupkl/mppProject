@@ -27,7 +27,6 @@ public class AddBook extends JFrame {
 
     public AddBook() {
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Add Book");
         setSize(500, 400);
         setLocationRelativeTo(null);
