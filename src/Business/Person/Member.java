@@ -8,23 +8,24 @@ import java.util.Collections;
 import java.util.List;
 
 public class Member extends Person {
-    private String id;
+    private String memberId;
     private List<CheckoutRecord> checkoutRecords;
-    private Member(String firstName, String lastName, String telephone, Address address)
+    private Member(String memberId, String firstName, String lastName, String telephone, Address address)
     {        
         super(firstName, lastName, telephone, address);
+        this.memberId = memberId;
     }
 
-    public static Member addMember(String firstName, String lastName, String street, String city, String state, int zip, String telephone)
+    public static Member addMember(String memberId, String firstName, String lastName, String street, String city, String state, int zip, String telephone)
     {
         Address address = new Address(street, city, state, zip);
-        Member member = new Member(firstName, lastName, telephone, address);
+        Member member = new Member(memberId, firstName, lastName, telephone, address);
         PersonDataAccess.addPerson(member);
         return member;
     }
 
     public String getId() {
-        return this.id;
+        return this.memberId;
     }
 
     public static Member getMember(String id) {
