@@ -27,7 +27,10 @@ public class MemberDataAccess extends FileDataAccess{
 
     public List<Member> readMembers()
     {
-        return (List<Member>)super.read(fileName);
+        List<Member> members = (List<Member>)super.read(fileName);
+        if (members == null)
+            members = new ArrayList<>();
+        return members;
     }
 
     public static void addMember(Member person)
@@ -43,21 +46,26 @@ public class MemberDataAccess extends FileDataAccess{
         super.write(fileName, members);
     }
 
-    public static void addCheckoutRecord(CheckoutRecord checkoutRecord)
+    public static Member addCheckoutRecord(CheckoutRecord checkoutRecord)
     {
-        instance._addCheckoutRecord(checkoutRecord);
+        return instance._addCheckoutRecord(checkoutRecord);
     }
 
-    private void _addCheckoutRecord(CheckoutRecord checkoutRecord)
+    private Member _addCheckoutRecord(CheckoutRecord checkoutRecord)
     {
+        Member updatedMember = null;
         List<Member> members = readMembers();
         for(Member member : members)
         {
             if(member.getId().equals(checkoutRecord.getMember().getId()))
             {
                 member.getCheckoutRecords().add(checkoutRecord);
+                updatedMember = member;
+                break;
             }
         }
         super.write(fileName, members);
+        return updatedMember;
+
     }
 }

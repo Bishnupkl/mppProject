@@ -1,5 +1,6 @@
 package Business.Book;
 
+import Business.Checkout.CheckoutRecord;
 import Business.MessageConstant;
 import Business.Person.Address;
 import Business.Person.Author;
@@ -118,5 +119,10 @@ public class Book implements Serializable {
 
     public List<BookCopy> getBookCopies() {
         return bookCopies;
+    }
+
+    public static void addCheckoutRecord(CheckoutRecord checkoutRecord)
+    {
+
     }
 }

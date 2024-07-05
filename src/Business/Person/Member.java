@@ -48,9 +48,11 @@ public class Member extends Person {
         Book book = (Book)bookResult.getValue();
         CheckoutRecord checkoutRecord = CheckoutRecordFactory.createCheckoutRecord(member, new BookCopy(null));
 
-        MemberDataAccess.addCheckoutRecord(checkoutRecord);
-        return new StatusInfoWrapper(true, null, null);
+        Member updatedMember = MemberDataAccess.addCheckoutRecord(checkoutRecord);
+        Book.addCheckoutRecord(checkoutRecord);
 
+
+        return new StatusInfoWrapper(true, updatedMember, null);
     }
 
     private static StatusInfoWrapper checkMemberExists(String memberId)
