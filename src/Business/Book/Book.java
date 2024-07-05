@@ -1,8 +1,12 @@
 package Business.Book;
 
+import Business.MessageConstant;
 import Business.Person.Address;
 import Business.Person.Author;
+import Business.Person.Member;
+import Business.StatusInfoWrapper;
 import DataAccess.BookDataAccess;
+import DataAccess.MemberDataAccess;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,58 +45,46 @@ public class Book implements Serializable {
         return isbn;
     }
 
-    public static boolean checkBookExist(String isbn) {
-        BookDataAccess bda = new BookDataAccess();
-        List<Book> dbBooks = bda.readBooks();
-        for (Book b : dbBooks) {
-            if (b.getIsbn().equals(isbn)) {
-                return true;
-            }
+    public static StatusInfoWrapper checkBookExist(String isbn)
+    {
+        Book book = BookDataAccess.readBook(isbn);
+        if(book == null)
+        {
+            return new StatusInfoWrapper(false, null, MessageConstant.BOOK_NOT_FOUND);
         }
-        return false;
+        else {
+            return new StatusInfoWrapper(true, book, null);
+        }
     }
 
-    public static boolean addBook(Book newBook) {
-        if (!checkBookExist(newBook.getIsbn())) {
-            BookDataAccess bda = new BookDataAccess();
-            List<Book> dbBooks = bda.readBooks();
-            dbBooks.add(newBook);
-            bda.write("book.bin",dbBooks);
-            System.out.printf("Add Book Success");
-            return true;
+    public static void addBook(Book newBook) {
+
+        StatusInfoWrapper result = checkBookExist(newBook.getIsbn());
+        if(result.getStatus() == false)
+        {
+            BookDataAccess.createNewBook(newBook);
         }
-        System.out.printf("Book exist");
-        return false;
     }
 
     public static void addCopy(String newIsbn) {
-        if (checkBookExist(newIsbn)) {
-            List<Book> dbBooks = BookDataAccess.readBooks();
-            for (Book b:dbBooks){
-                if(b.getIsbn().equals(newIsbn)){
-                    b.setBookCopies(new BookCopy(b));
-                }
-            }
-            BookDataAccess.createNewBook(dbBooks);
-            System.out.printf("Add BookCopy Success");
-            return;
+
+        StatusInfoWrapper result = checkBookExist(newIsbn);
+        if(result.getStatus())
+        {
+            Book book = (Book)result.getValue();
+            book.setBookCopies(new BookCopy(book));
+            BookDataAccess.createNewBookCopy(book);
         }
-        System.out.printf("Book does not exist please create book");
     }
 
     public static List<BookCopy> getBookCopies(String isbn){
-        if (checkBookExist(isbn)) {
-            List<Book> dbBooks = BookDataAccess.readBooks();
-            for (Book b:dbBooks){
-                if(b.getIsbn().equals(isbn)){
-                    for (BookCopy copy: b.getBookCopies()){
-                        System.out.println(copy);
-                    }
-                    return b.getBookCopies();
-                }
-            }
+
+        StatusInfoWrapper result = checkBookExist(isbn);
+        if(result.getStatus())
+        {
+            return ((Book)result.getValue()).getBookCopies();
         }
-        System.out.printf("Book does not exist");
+
         return null;
     }
 
