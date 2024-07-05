@@ -1,5 +1,6 @@
 package Business.Book;
 
+import Business.Checkout.CheckoutRecord;
 import Business.MessageConstant;
 import Business.Person.Address;
 import Business.Person.Author;
@@ -55,10 +56,9 @@ public class Book implements Serializable {
     }
 
     public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
-        Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
-        StatusInfoWrapper result = checkBookExist(newBook.getIsbn());
-        System.out.println(result.getValue());
+        StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus() == false) {
+            Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
             BookDataAccess.createNewBook(newBook);
             return new StatusInfoWrapper(true, null, "Create Book Successful");
         } else {
@@ -119,5 +119,10 @@ public class Book implements Serializable {
 
     public List<BookCopy> getBookCopies() {
         return bookCopies;
+    }
+
+    public static void addCheckoutRecord(CheckoutRecord checkoutRecord)
+    {
+
     }
 }
