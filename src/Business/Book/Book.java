@@ -17,6 +17,11 @@ public class Book implements Serializable {
     private String isbn;
     private String title;
     private int borrowDuration;
+
+    public int getBorrowDuration() {
+        return borrowDuration;
+    }
+
     private List<BookCopy> bookCopies = new ArrayList<>();
     private List<Author> authors = new ArrayList<>();
 
@@ -68,7 +73,6 @@ public class Book implements Serializable {
 
     public static StatusInfoWrapper addCopy(String newIsbn) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
-        System.out.println(result.getStatus());
         if (result.getStatus()) {
             Book book = (Book) result.getValue();
             book.setBookCopies(new BookCopy(book));
@@ -100,16 +104,16 @@ public class Book implements Serializable {
         this.bookCopies.add(bookCopy);
     }
 
-    public StatusInfoWrapper getAvailableCopy(String isbn) {
+    public static StatusInfoWrapper getAvailableCopy(String isbn) {
         Book book = BookDataAccess.readBook(isbn);
         if (book == null) {
             return new StatusInfoWrapper(false, null, "Book does not exist in system");
         } else {
             List<BookCopy> copies = book.getBookCopies();
             for (BookCopy copy : copies) {
-                if (copy.getCheckoutRecord().equals(null)) {
+                if (copy.getCheckoutRecord() == null) {
                     return new StatusInfoWrapper(true, copy, "success");
-                } else if (!copy.getCheckoutRecord().getReturnDate().equals(null)) {
+                } else if (copy.getCheckoutRecord().getReturnDate() != null) {
                     return new StatusInfoWrapper(true, copy, "success");
                 }
             }
@@ -123,6 +127,9 @@ public class Book implements Serializable {
 
     public static void addCheckoutRecord(CheckoutRecord checkoutRecord)
     {
-
+        BookDataAccess.addCheckoutRecord(checkoutRecord);
     }
+
+
+
 }
