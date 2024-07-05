@@ -3,6 +3,7 @@ package UI;
 import Business.Book.Book;
 import Business.Person.Address;
 import Business.Person.Author;
+import Business.StatusInfoWrapper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,9 @@ public class AddBook extends JFrame {
     private JList list1;
     private JRadioButton a21DaysRadioButton;
     private JRadioButton a7DaysRadioButton;
+    ButtonGroup buttonGroup = new ButtonGroup();
+
+
     private int borrowDuraration;
 
     public AddBook() {
@@ -30,6 +34,8 @@ public class AddBook extends JFrame {
         setResizable(false);
         setContentPane(AddBookPane);
 
+        buttonGroup.add(a21DaysRadioButton);
+        buttonGroup.add(a7DaysRadioButton);
 
         a21DaysRadioButton.addActionListener(new ActionListener() {
             @Override
@@ -55,26 +61,19 @@ public class AddBook extends JFrame {
                 List<String> authors = list1.getSelectedValuesList();
 
 
-
-                Address address = new Address("4th","Fairfield","IOWA",52772);
-                List<Author> authorsObject=new ArrayList<>();
-                for (String a:authors){
-                    authorsObject.add(new Author(a,"John","011222333",address,"Master","Good Author"));
+                Address address = new Address("4th", "Fairfield", "IOWA", "52772");
+                List<Author> authorsObject = new ArrayList<>();
+                for (String a : authors) {
+                    authorsObject.add(new Author(a, "John", "011222333", address, "Master", "Good Author"));
                 }
-                Book newBook= new Book(isbnValue,name,borrowDuraration,authorsObject);
-                boolean result = Book.addBook(newBook);
+                Book newBook = new Book(isbnValue, name, borrowDuraration, authorsObject);
+                StatusInfoWrapper result = Book.addBook(newBook);
 
-                if(result){
-                    JOptionPane.showMessageDialog(null, "Book created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    isbn.setText("");
-                    bookName.setText("");
-                    list1.clearSelection();
+                JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                isbn.setText("");
+                bookName.setText("");
+                list1.clearSelection();
 
-
-                }else{
-                    JOptionPane.showMessageDialog(null, "Can't create book", "Error", JOptionPane.ERROR_MESSAGE);
-
-                }
 
             }
         });
@@ -87,9 +86,7 @@ public class AddBook extends JFrame {
         thread safety and avoid potential concurrency issues.
          */
 
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(new JRadioButton("21 Days", false));
-        buttonGroup.add(new JRadioButton("7 Days", true));
+
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
