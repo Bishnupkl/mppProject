@@ -63,6 +63,7 @@ public class AddBook extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 String isbnValue = isbn.getText();
                 String name = bookName.getText();
+                int copies=Integer.valueOf(noOfCopies.getText());
                 List<String> authors = list1.getSelectedValuesList();
 
 
@@ -80,7 +81,7 @@ public class AddBook extends JFrame {
 
                 System.out.println(authorsObject);
 
-                StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject);
+                StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject,copies);
                 JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
                 isbn.setText("");
                 bookName.setText("");
