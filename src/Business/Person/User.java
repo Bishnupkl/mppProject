@@ -1,9 +1,7 @@
 package Business.Person;
 
-import DataAccess.PersonDataAccess;
 import DataAccess.UserDataAccess;
 
-import java.util.HashSet;
 import java.util.List;
 
 public class User extends Person{
