@@ -63,7 +63,6 @@ public  class BookDataAccess extends FileDataAccess {
     }
 
 
-
     public static void addCheckoutRecord(CheckoutRecord checkoutRecord)
     {
         instance._addCheckoutRecord(checkoutRecord);
