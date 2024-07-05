@@ -39,8 +39,4 @@ public class CheckoutRecord implements Serializable {
     public BookCopy getBookCopy() {
         return bookCopy;
     }
-
-    public BookCopy getBookCopy() {
-        return bookCopy;
-    }
 }
