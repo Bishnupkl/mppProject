@@ -3,6 +3,7 @@ package DataAccess;
 
 import Business.Person.Member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemberDataAccess extends FileDataAccess{
@@ -33,6 +34,9 @@ public class MemberDataAccess extends FileDataAccess{
     private void _addMember(Member member)
     {
         List<Member> members = readMembers();
+        if (members == null) {
+            members = new ArrayList<>();
+        }
         members.add(member);
         super.write(fileName, members);
     }
