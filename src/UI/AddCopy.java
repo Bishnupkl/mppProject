@@ -11,8 +11,7 @@ import java.awt.event.ActionListener;
 public class AddCopy extends JFrame {
     private JTextField isbn;
     private JButton addCopyButton;
-    private JPanel addCopy;
-//    private JPanel AddCopyPanel;
+    private JPanel addCopyPanel;
 
 
     public AddCopy() {
@@ -22,7 +21,7 @@ public class AddCopy extends JFrame {
         setSize(500, 400);
         setLocationRelativeTo(null);
         setResizable(false);
-        setContentPane(addCopy);
+        setContentPane(addCopyPanel);
         addCopyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
