@@ -76,6 +76,12 @@ public class MainMenu extends JFrame {
                 AddBook addBook = new AddBook();
             }
         });
+        addCopyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddCopy addBook = new AddCopy();
+            }
+        });
     }
 
 //    public static void main(String[] args) {

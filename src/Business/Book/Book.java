@@ -69,15 +69,17 @@ public class Book implements Serializable {
         }
     }
 
-    public static void addCopy(String newIsbn) {
-
+    public static StatusInfoWrapper addCopy(String newIsbn) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
+        System.out.println(result.getStatus());
         if(result.getStatus())
         {
             Book book = (Book)result.getValue();
             book.setBookCopies(new BookCopy(book));
             BookDataAccess.createNewBookCopy(book);
+            return new StatusInfoWrapper(true,null,"Add Copy Successful");
         }
+        return new StatusInfoWrapper(true,null,"Cannot add copy");
     }
 
     public static List<BookCopy> getBookCopies(String isbn){
@@ -95,7 +97,7 @@ public class Book implements Serializable {
 //        Address address= new Address("4th","fairfield","IOWA","52556");
 //        Author author= new Author("John","Cena","641222333",address,"Good Author","Nice Author");
 //        Book.addBook(new Book("How to","13",7,author));
-//        Book.addCopy("How to");
+        Book.addCopy("11");
 //        List<BookCopy> copies = Book.getBookCopies("How to");
     }
 
