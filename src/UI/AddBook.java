@@ -70,10 +70,10 @@ public class AddBook extends JFrame {
                     authorsObject.add(new Author(a, "John", "011222333", address, "Master", "Good Author"));
                 }
 
-                if (authorsObject.size() == 0) {
-                    authorsObject.add(new Author("Author", "John", "011222333", address, "Master", "Good Author"));
-
-                }
+//                if (authorsObject.size() == 0) {
+//                    authorsObject.add(new Author("Author", "John", "011222333", address, "Master", "Good Author"));
+//
+//                }
 
 
                 System.out.println(authorsObject);
