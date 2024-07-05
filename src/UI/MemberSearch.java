@@ -1,7 +1,11 @@
 package UI;
 
+import Business.Book.Book;
+import Business.Book.BookCopy;
+import Business.Checkout.CheckoutRecord;
 import Business.Person.Member;
 
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,13 +49,40 @@ public class MemberSearch extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("submit clicked");
-                JTable table = new JTable(new String[][]{
-                        {"hello", "there"},
-                        {"hi", "here"},
-                }, new String[]{"a", "b"});
-                self.add(table);
+                showTable();
             }
         });
+    }
+
+    private void showTable() {
+        JFrame f;
+        JTable j;
+        List<CheckoutRecord> checkoutRecords;
+        Book book;
+        BookCopy bookCopy;
+
+        if (foundMember == null) return;
+        checkoutRecords = foundMember.getCheckoutRecords();
+        f = new JFrame();
+        f.setTitle("Checkout record");
+        String[] columnNames = { "ISBN", "book title", "copy number" };
+        String[][] data = new String[checkoutRecords.size()][];
+
+        for (int i =0, n = checkoutRecords.size(); i < n; i++) {
+            bookCopy = checkoutRecords.get(i).getBookCopy();
+            book = bookCopy.getBook();
+            data[i] = new String[]{
+                    book.getIsbn(),
+                    book.getTitle(),
+                    bookCopy.getId(),
+            };
+        }
+        j = new JTable(data, columnNames);
+        j.setBounds(30, 40, 200, 300);
+        JScrollPane sp = new JScrollPane(j);
+        f.add(sp);
+        f.setSize(500, 200);
+        f.setVisible(true);
     }
 
     public static void main(String[] args) {
