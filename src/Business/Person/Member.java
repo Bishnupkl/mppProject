@@ -44,9 +44,15 @@ public class Member extends Person {
             return bookResult;
         }
 
+        StatusInfoWrapper bookCopyResult = Book.getAvailableCopy(isbn);
+        if(bookCopyResult.getStatus() ==  false)
+        {
+            return bookCopyResult;
+        }
+
         Member member = (Member)memberResult.getValue();
-        Book book = (Book)bookResult.getValue();
-        CheckoutRecord checkoutRecord = CheckoutRecordFactory.createCheckoutRecord(member, new BookCopy(null));
+        BookCopy bookCopy = (BookCopy)bookCopyResult.getValue();
+        CheckoutRecord checkoutRecord = CheckoutRecordFactory.createCheckoutRecord(member, bookCopy);
 
         Member updatedMember = MemberDataAccess.addCheckoutRecord(checkoutRecord);
         Book.addCheckoutRecord(checkoutRecord);
