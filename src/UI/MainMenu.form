@@ -59,7 +59,7 @@
         </constraints>
         <properties>
           <font name="DialogInput" size="20" style="1"/>
-          <text value="Add Copy"/>
+          <text value="Add Book Copy"/>
         </properties>
       </component>
       <component id="111d5" class="javax.swing.JButton" binding="searchmember">
