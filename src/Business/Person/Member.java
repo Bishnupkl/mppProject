@@ -22,6 +22,10 @@ public class Member extends Person {
         this.memberId = memberId;
     }
 
+    public String getId() {
+        return this.memberId;
+    }
+
     public static Member addMember(String memberId, String firstName, String lastName, String street, String city, String state, String zip, String telephone)
     {
         Address address = new Address(street, city, state, zip);
@@ -73,9 +77,6 @@ public class Member extends Person {
         }
     }
 
-    public String getId() {
-        return this.memberId;
-    }
 
     public static Member getMember(String id) {
         return MemberDataAccess.readMember(id);
