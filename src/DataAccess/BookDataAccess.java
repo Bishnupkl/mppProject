@@ -1,6 +1,8 @@
 package DataAccess;
 
 import Business.Book.Book;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public  class BookDataAccess extends FileDataAccess {
@@ -9,6 +11,10 @@ public  class BookDataAccess extends FileDataAccess {
     private BookDataAccess(){}
     public static Book readBook(String isbn)
     {
+        List<Book> books= instance.readBooks();
+        if(books==null){
+            return null;
+        }
         for (Book book:  instance.readBooks()) {
             if (book.getIsbn().equals(isbn)) return book;
         }
@@ -17,7 +23,11 @@ public  class BookDataAccess extends FileDataAccess {
 
     public List<Book> readBooks()
     {
-        return (List<Book>)super.read(fileName);
+        List<Book> books=(List<Book>)super.read(fileName);
+        if(books==null){
+            return new ArrayList<>();
+        }
+        return books;
     }
 
     public static void createNewBook(Book book){
@@ -26,7 +36,6 @@ public  class BookDataAccess extends FileDataAccess {
 
 
     public void _createNewBook(Book book){
-
         List<Book> books = readBooks();
         books.add(book);
         write(fileName,books);

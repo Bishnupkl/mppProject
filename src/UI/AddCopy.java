@@ -16,10 +16,6 @@ public class AddCopy  extends  JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String isbnValue = isbn.getText();
-                if (!Book.checkBookExist(isbnValue)) {
-
-//                    BookCopy newCopy = new BookCopy();
-                }
             }
         });
     }
