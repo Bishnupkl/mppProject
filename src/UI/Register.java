@@ -11,13 +11,16 @@ public class Register extends JFrame {
     private JTextField city;
     private JTextField stateTextField;
     private JButton submitMemberButton;
+    private JTextField memberId;
+    private JTextField zipCode;
+    private JTextField phoneNumber;
 
 
     public Register() {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("New Member Form");
-        setSize(400, 400);
+        setSize(480, 400);
         setLocationRelativeTo(null);
         setResizable(true);
         setContentPane(RegisterPane);
