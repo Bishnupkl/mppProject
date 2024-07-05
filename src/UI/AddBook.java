@@ -39,6 +39,8 @@ public class AddBook extends JFrame {
 
         buttonGroup.add(a21DaysRadioButton);
         buttonGroup.add(a7DaysRadioButton);
+        a21DaysRadioButton.setSelected(true);
+        borrowDuraration = 21;
 
         a21DaysRadioButton.addActionListener(new ActionListener() {
             @Override
