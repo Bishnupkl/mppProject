@@ -31,6 +31,5 @@ public class UserDataAccess extends FileDataAccess{
     private void _addUsers(List<User> users)
     {
         super.write(fileName, users);
-        List<User> uu = (List<User>)super.read(fileName);
     }
 }
