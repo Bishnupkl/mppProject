@@ -40,7 +40,7 @@ public class Login extends JFrame {
                     User loginUser = User.login(username, password);
 //               JOptionPane.showMessageDialog(null, loginUser, "Success", JOptionPane.INFORMATION_MESSAGE);
                     if (loginUser != null) {
-                        MainMenu menu = new MainMenu();
+                        MainMenu menu = new MainMenu(loginUser);
                         setVisible(false);
 
                     } else {

@@ -21,6 +21,7 @@ public class User extends Person{
         super("","");
         this.id  = id;
         this.password = password;
+        this.userRoles = userRoles;
     }
 
     public void addDefaultUser(List<User> users)
@@ -36,6 +37,10 @@ public class User extends Person{
             return null;
         }
         return user;
+    }
+
+    public List<UserRole> getRole() {
+        return this.userRoles;
     }
 
     private static boolean verifyCredential(String password, User user)
