@@ -40,8 +40,6 @@ public class Book implements Serializable {
         this.isbn = newIsbn;
         this.title = newTitle;
         this.borrowDuration = newBorrowDuration;
-        BookCopy copyOne = new BookCopy(this);
-        this.bookCopies.add(copyOne);
         for (Author a : newAuthors) {
             a.setBook(this);
         }
@@ -103,7 +101,8 @@ public class Book implements Serializable {
 //        Author author= new Author("John","Cena","641222333",address,"Good Author","Nice Author");
 //        Book.addBook(new Book("How to","13",7,author));
 //        Book.addCopy("11");
-//        List<BookCopy> copies = Book.getBookCopies("How to");
+        List<BookCopy> copies = Book.getBookCopies("5566");
+        System.out.println(copies);
     }
 
     public void setBookCopies(BookCopy bookCopy) {
