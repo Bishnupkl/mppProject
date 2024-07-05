@@ -20,6 +20,7 @@ public class AddBook extends JFrame {
     private JList list1;
     private JRadioButton a21DaysRadioButton;
     private JRadioButton a7DaysRadioButton;
+    private JTextField noOfCopies;
     ButtonGroup buttonGroup = new ButtonGroup();
 
 
@@ -92,6 +93,7 @@ public class AddBook extends JFrame {
             }
         });
     }
+
 
 
 }

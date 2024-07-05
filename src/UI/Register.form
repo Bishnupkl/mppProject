@@ -175,7 +175,7 @@
           </grid>
         </constraints>
         <properties>
-          <font name="DialogInput" size="12" style="1"/>
+          <font name="DialogInput" size="20" style="1"/>
         </properties>
       </component>
       <component id="883c3" class="javax.swing.JLabel">
