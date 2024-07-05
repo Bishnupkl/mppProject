@@ -61,11 +61,16 @@ public class Book implements Serializable {
         }
     }
 
-    public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
+    public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors,int copies) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus() == false) {
             Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
             BookDataAccess.createNewBook(newBook);
+            int tmp=0;
+            while (tmp<copies){
+                Book.addCopy(newBook.getIsbn());
+                tmp++;
+            }
             return new StatusInfoWrapper(true, null, "Create Book Successful");
         } else {
             return new StatusInfoWrapper(false, null, "Book already exist in the system");
