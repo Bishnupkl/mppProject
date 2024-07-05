@@ -4,13 +4,12 @@ package DataAccess;
 import Business.Person.Person;
 import Business.Person.User;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDataAccess extends FileDataAccess{
     private static final String fileName = "person.bin";
     private static final PersonDataAccess instance = new PersonDataAccess();
-
 
     private PersonDataAccess(){};
 
@@ -28,6 +27,7 @@ public class PersonDataAccess extends FileDataAccess{
     public List<Person> readPersons()
     {
         List<Person> persons = (List<Person>)super.read(fileName);
+        if(persons == null) return new ArrayList<>();
         return persons;
     }
 
