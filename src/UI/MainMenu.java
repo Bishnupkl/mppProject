@@ -52,7 +52,7 @@ public class MainMenu extends JFrame {
                 searchmember.setVisible(true);
                 checkOutButton.setVisible(true);
                 displayBookCopyButton.setVisible(true);
-                searchBookButton.setVisible(true);
+//                searchBookButton.setVisible(true);
             }
         }
 
@@ -86,6 +86,12 @@ public class MainMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Checkout checkout = new Checkout();
+            }
+        });
+        displayBookCopyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SearchBook searchBookCopy = new SearchBook();
             }
         });
     }
