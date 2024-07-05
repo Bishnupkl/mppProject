@@ -1,6 +1,11 @@
 package UI;
 
+import Business.Person.Member;
+import Business.StatusInfoWrapper;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Checkout  extends  JFrame{
     private JPanel checkOutPanel;
@@ -16,5 +21,23 @@ public class Checkout  extends  JFrame{
         setLocationRelativeTo(null);
         setResizable(true);
         setContentPane(checkOutPanel);
+        checkoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String isbnValue = isbn.getText();
+                String memberIDValue = memberId.getText();
+
+                StatusInfoWrapper result = Member.checkout(memberIDValue, isbnValue);
+                if(result.getStatus())
+                {
+                    Member m = (Member) result.getValue();
+                    m.getCheckoutRecords();
+                }
+
+                result.getMessage();
+
+
+            }
+        });
     }
 }

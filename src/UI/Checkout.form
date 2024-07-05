@@ -5,7 +5,9 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-1049919"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="218f1" class="javax.swing.JLabel">
@@ -62,6 +64,7 @@
         </constraints>
         <properties>
           <font name="DialogInput" size="20" style="1"/>
+          <foreground color="-2104859"/>
           <text value="Checkout"/>
         </properties>
       </component>
