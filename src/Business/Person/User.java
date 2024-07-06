@@ -33,7 +33,7 @@ public class User extends Person{
         List<User> users = new ArrayList<>();
         for(UserInfoWrapper info: defaultUsers)
         {
-            users.add(PersonFactory.generateUser(info.id, info.password, info.userRoles));
+            users.add((User)PersonFactory.generateUser(info.id, info.password, info.userRoles));
         }
         UserDataAccess.addUsers(users);
     }

@@ -1,10 +1,10 @@
 package Business.Book;
 
 import Business.Checkout.CheckoutRecord;
-import Business.HelperFactory;
-import Business.MessageConstant;
+import Helper.HelperFactory;
+import Helper.MessageConstant;
 import Business.Person.Author;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 import DataAccess.BookDataAccess;
 
 import java.io.Serializable;
@@ -60,13 +60,8 @@ public class Book implements Serializable {
     public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors,int copies) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus() == false) {
-            Book newBook = BookFactory.generateBook(newIsbn, newTitle, newBorrowDuration, newAuthors);
+            Book newBook = BookFactory.generateBook(newIsbn, newTitle, newBorrowDuration, newAuthors, copies);
             BookDataAccess.createNewBook(newBook);
-            int tmp=0;
-            while (tmp<copies){
-                Book.addCopy(newBook.getIsbn());
-                tmp++;
-            }
             return HelperFactory.generateStatusInfo(true, null, "Create Book Successful");
         } else {
             return HelperFactory.generateStatusInfo(false, null, "Book already exist in the system");
@@ -91,15 +86,6 @@ public class Book implements Serializable {
             return ((Book) result.getValue()).getBookCopies();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-//        Address address= new Address("4th","fairfield","IOWA","52556");
-//        Author author= new Author("John","Cena","641222333",address,"Good Author","Nice Author");
-//        Book.addBook(new Book("How to","13",7,author));
-//        Book.addCopy("11");
-//        List<BookCopy> copies = Book.getBookCopies("5566");
-//        System.out.println(copies);
     }
 
     public void setBookCopies(BookCopy bookCopy) {

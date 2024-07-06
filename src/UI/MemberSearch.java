@@ -27,7 +27,7 @@ public class MemberSearch extends JFrame {
         setVisible(true);
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("search member");
-        setSize(600, 400);
+        setSize(600, 300);
         setLocationRelativeTo(null);
         setResizable(false);
         setContentPane(memberSearchPanel);
@@ -50,7 +50,7 @@ public class MemberSearch extends JFrame {
         printCheckoutRecordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("submit clicked");
+//                System.out.println("submit clicked");
                 if (foundMember == null) {
                     JOptionPane.showMessageDialog(null, "please search member first", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -61,12 +61,5 @@ public class MemberSearch extends JFrame {
     }
 
 
-    public static void main(String[] args) {
 
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                MemberSearch mf = new MemberSearch();
-            }
-        });
-    }
 }

@@ -1,13 +1,11 @@
 package UI;
 
 import Business.Book.Book;
-import Business.Person.Address;
 import Business.Person.Author;
 import Business.Person.PersonFactory;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -70,7 +68,7 @@ public class AddBook extends JFrame {
 
                 List<Author> authorsObject = new ArrayList<>();
                 for (String author : authors) {
-                    authorsObject.add(PersonFactory.generateAuthor(author, "", "011222333", "Master", "Good Author", "4th North", "Fairfield", "IOWA", "52557"));
+                    authorsObject.add((Author)PersonFactory.generateAuthor(author, "", "011222333", "Master", "Good Author", "4th North", "Fairfield", "IOWA", "52557"));
                 }
                 StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject, copies);
                 JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);

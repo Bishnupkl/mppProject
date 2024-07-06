@@ -4,7 +4,7 @@ import Business.Person.User;
 
 import java.util.List;
 
-public class UserDataAccess extends FileDataAccess{
+public final class UserDataAccess extends FileDataAccess{
     private static final String fileName = "user.bin";
     private static final UserDataAccess instance = new UserDataAccess();
     private UserDataAccess(){};
