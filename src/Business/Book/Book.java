@@ -3,12 +3,9 @@ package Business.Book;
 import Business.Checkout.CheckoutRecord;
 import Business.HelperFactory;
 import Business.MessageConstant;
-import Business.Person.Address;
 import Business.Person.Author;
-import Business.Person.Member;
 import Business.StatusInfoWrapper;
 import DataAccess.BookDataAccess;
-import DataAccess.MemberDataAccess;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -63,7 +60,7 @@ public class Book implements Serializable {
     public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors,int copies) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus() == false) {
-            Book newBook = BookFactory.createBook(newIsbn, newTitle, newBorrowDuration, newAuthors);
+            Book newBook = BookFactory.generateBook(newIsbn, newTitle, newBorrowDuration, newAuthors);
             BookDataAccess.createNewBook(newBook);
             int tmp=0;
             while (tmp<copies){
@@ -80,7 +77,7 @@ public class Book implements Serializable {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus()) {
             Book book = (Book) result.getValue();
-            BookCopy copy = BookFactory.createBookCopy(book);
+            BookCopy copy = BookFactory.generateBookCopy(book);
             book.setBookCopies(copy);
             BookDataAccess.createNewBookCopy(book);
             return HelperFactory.generateStatusInfo(true, null, "Add Copy Successful");
