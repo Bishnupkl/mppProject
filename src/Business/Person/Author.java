@@ -12,7 +12,7 @@ public class Author extends Person implements Serializable  {
     private String credentials;
     private String bio;
 
-    public Author(String firstName,String lastName, String phoneNumber,Address address,  String credentials, String bio) {
+    Author(String firstName,String lastName, String phoneNumber,Address address,  String credentials, String bio) {
         super(firstName,lastName,phoneNumber,address);
         this.credentials = credentials;
         this.bio = bio;
