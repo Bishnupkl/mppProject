@@ -37,7 +37,7 @@ public class Book implements Serializable {
         this.authors.add(newAuthor);
     }
 
-    private Book(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
+   Book(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
         this.isbn = newIsbn;
         this.title = newTitle;
         this.borrowDuration = newBorrowDuration;
@@ -63,7 +63,7 @@ public class Book implements Serializable {
     public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors,int copies) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus() == false) {
-            Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
+            Book newBook = BookFactory.createBook(newIsbn, newTitle, newBorrowDuration, newAuthors);
             BookDataAccess.createNewBook(newBook);
             int tmp=0;
             while (tmp<copies){
@@ -80,7 +80,8 @@ public class Book implements Serializable {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus()) {
             Book book = (Book) result.getValue();
-            book.setBookCopies(new BookCopy(book));
+            BookCopy copy = BookFactory.createBookCopy(book);
+            book.setBookCopies(copy);
             BookDataAccess.createNewBookCopy(book);
             return HelperFactory.generateStatusInfo(true, null, "Add Copy Successful");
         }
@@ -88,13 +89,20 @@ public class Book implements Serializable {
     }
 
     public static List<BookCopy> getBookCopies(String isbn) {
-
         StatusInfoWrapper result = checkBookExist(isbn);
         if (result.getStatus()) {
             return ((Book) result.getValue()).getBookCopies();
         }
-
         return null;
+    }
+
+    public static void main(String[] args) {
+//        Address address= new Address("4th","fairfield","IOWA","52556");
+//        Author author= new Author("John","Cena","641222333",address,"Good Author","Nice Author");
+//        Book.addBook(new Book("How to","13",7,author));
+//        Book.addCopy("11");
+//        List<BookCopy> copies = Book.getBookCopies("5566");
+//        System.out.println(copies);
     }
 
     public void setBookCopies(BookCopy bookCopy) {
