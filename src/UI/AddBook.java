@@ -1,13 +1,11 @@
 package UI;
 
 import Business.Book.Book;
-import Business.Person.Address;
 import Business.Person.Author;
 import Business.Person.PersonFactory;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package Business;
+package Helper;
 
-public class StatusInfoWrapper {
+public final class StatusInfoWrapper {
     private boolean status;
     private Object value;
     private String message;

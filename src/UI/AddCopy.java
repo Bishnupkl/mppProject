@@ -1,8 +1,7 @@
 package UI;
 
 import Business.Book.Book;
-import Business.Book.BookCopy;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

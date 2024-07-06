@@ -4,7 +4,7 @@ import Business.Person.Author;
 
 import java.util.List;
 
-public class BookFactory {
+public final class BookFactory {
     private BookFactory(){}
     public static Book generateBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors ,int copies){
 

@@ -4,9 +4,9 @@ import Business.Book.Book;
 import Business.Book.BookCopy;
 import Business.Checkout.CheckoutRecord;
 import Business.Checkout.CheckoutRecordFactory;
-import Business.HelperFactory;
-import Business.MessageConstant;
-import Business.StatusInfoWrapper;
+import Helper.HelperFactory;
+import Helper.MessageConstant;
+import Helper.StatusInfoWrapper;
 import DataAccess.MemberDataAccess;
 
 import java.util.ArrayList;

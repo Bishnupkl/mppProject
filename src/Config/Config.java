@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-public class Config {
+public final class Config {
 
     private static List<String> getArrayLikeList(Properties properties, String prefix) {
         List<String> list = new ArrayList<>();

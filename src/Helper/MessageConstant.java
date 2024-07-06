@@ -1,4 +1,4 @@
-package Business;
+package Helper;
 
 public interface MessageConstant {
     public static String MEMBER_NOT_FOUND = "Member not found!";

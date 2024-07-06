@@ -1,10 +1,10 @@
 package Business.Book;
 
 import Business.Checkout.CheckoutRecord;
-import Business.HelperFactory;
-import Business.MessageConstant;
+import Helper.HelperFactory;
+import Helper.MessageConstant;
 import Business.Person.Author;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 import DataAccess.BookDataAccess;
 
 import java.io.Serializable;
