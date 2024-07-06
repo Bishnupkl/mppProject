@@ -2,7 +2,7 @@ package Business.Person;
 
 import java.util.List;
 
-public class PersonFactory {
+public final class PersonFactory {
     private PersonFactory(){}
 
     public static Member generateMember(String memberId, String firstName, String lastName, String street, String city, String state, String zip, String telephone)
