@@ -30,9 +30,9 @@ public class AddBook extends JFrame {
         setVisible(true);
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Add Book");
-        setSize(500, 400);
+        setSize(500, 500);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setContentPane(AddBookPane);
 
         list1.setSelectedIndex(0);
