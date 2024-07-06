@@ -4,9 +4,9 @@ import Business.Book.Book;
 import Business.Book.BookCopy;
 import Business.Checkout.CheckoutRecord;
 import Business.Checkout.CheckoutRecordFactory;
-import Business.HelperFactory;
-import Business.MessageConstant;
-import Business.StatusInfoWrapper;
+import Helper.HelperFactory;
+import Helper.MessageConstant;
+import Helper.StatusInfoWrapper;
 import DataAccess.MemberDataAccess;
 
 import java.util.ArrayList;
@@ -28,9 +28,9 @@ public class Member extends Person {
 
     public static Member addMember(String memberId, String firstName, String lastName, String street, String city, String state, String zip, String telephone)
     {
-        Member member = PersonFactory.generateMember(memberId, firstName, lastName, street, city, state, zip, telephone);
-        MemberDataAccess.addMember(member);
-        return member;
+        Person member = PersonFactory.generateMember(memberId, firstName, lastName, street, city, state, zip, telephone);
+        MemberDataAccess.addMember((Member)member);
+        return (Member)member;
     }
 
     public static StatusInfoWrapper checkout(String memberId, String isbn)
