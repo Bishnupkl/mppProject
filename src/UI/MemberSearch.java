@@ -5,6 +5,7 @@ import Business.Book.BookCopy;
 import Business.Checkout.CheckoutRecord;
 import Business.Person.Member;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.*;
 import java.awt.*;
@@ -35,6 +36,7 @@ public class MemberSearch extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String memberId = memberIdField.getText();
+                name.setText("-");
                 foundMember = Member.getMember(memberId);
                 if (foundMember == null) {
                     JOptionPane.showMessageDialog(null, String.format("Not found user with id: %s", memberId), "Error", JOptionPane.ERROR_MESSAGE);
@@ -49,41 +51,15 @@ public class MemberSearch extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("submit clicked");
-                showTable();
+                if (foundMember == null) {
+                    JOptionPane.showMessageDialog(null, "please search member first", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                };
+                CheckoutRecordTable.Show(foundMember.getCheckoutRecords());
             }
         });
     }
 
-    private void showTable() {
-        JFrame f;
-        JTable j;
-        List<CheckoutRecord> checkoutRecords;
-        Book book;
-        BookCopy bookCopy;
-
-        if (foundMember == null) return;
-        checkoutRecords = foundMember.getCheckoutRecords();
-        f = new JFrame();
-        f.setTitle("Checkout record");
-        String[] columnNames = { "ISBN", "book title", "copy number" };
-        String[][] data = new String[checkoutRecords.size()][];
-
-        for (int i =0, n = checkoutRecords.size(); i < n; i++) {
-            bookCopy = checkoutRecords.get(i).getBookCopy();
-            book = bookCopy.getBook();
-            data[i] = new String[]{
-                    book.getIsbn(),
-                    book.getTitle(),
-                    bookCopy.getId(),
-            };
-        }
-        j = new JTable(data, columnNames);
-        j.setBounds(30, 40, 200, 300);
-        JScrollPane sp = new JScrollPane(j);
-        f.add(sp);
-        f.setSize(500, 200);
-        f.setVisible(true);
-    }
 
     public static void main(String[] args) {
 
