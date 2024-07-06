@@ -23,8 +23,4 @@ public final class PersonFactory {
         return new Author(firstName, lastName, phoneNumber,address,credentials,bio);
     }
 
-    public static Address generateAddress(String street, String city, String state, String zip)
-    {
-        return new Address(street, city, state,zip);
-    }
 }
