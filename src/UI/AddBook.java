@@ -68,7 +68,7 @@ public class AddBook extends JFrame {
 
                 List<Author> authorsObject = new ArrayList<>();
                 for (String author : authors) {
-                    authorsObject.add(PersonFactory.generateAuthor(author, "", "011222333", "Master", "Good Author", "4th North", "Fairfield", "IOWA", "52557"));
+                    authorsObject.add((Author)PersonFactory.generateAuthor(author, "", "011222333", "Master", "Good Author", "4th North", "Fairfield", "IOWA", "52557"));
                 }
                 StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject, copies);
                 JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
