@@ -55,7 +55,7 @@ public class Member extends Person {
 
         Member member = (Member)memberResult.getValue();
         BookCopy bookCopy = (BookCopy)bookCopyResult.getValue();
-        CheckoutRecord checkoutRecord = CheckoutRecordFactory.createCheckoutRecord(member, bookCopy);
+        CheckoutRecord checkoutRecord = CheckoutRecordFactory.generateCheckoutRecord(member, bookCopy);
 
         Member updatedMember = MemberDataAccess.addCheckoutRecord(checkoutRecord);
         Book.addCheckoutRecord(checkoutRecord);
