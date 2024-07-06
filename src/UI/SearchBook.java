@@ -19,7 +19,7 @@ public class SearchBook extends JFrame {
         setVisible(true);
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Main Menu");
-        setSize(600, 400);
+        setSize(600, 200);
         setLocationRelativeTo(null);
         setResizable(true);
         setContentPane(searchBook);
@@ -30,7 +30,13 @@ public class SearchBook extends JFrame {
                 String isbn = isnValue.getText();
 
                 List<BookCopy> bookCopies = Book.getBookCopies(isbn);
-                showBookCopies(bookCopies);
+                if (bookCopies != null) {
+
+                    showBookCopies(bookCopies);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid ISBN", "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
 
             }
 
@@ -61,7 +67,7 @@ public class SearchBook extends JFrame {
                             book.getTitle(),
                             bookCopy.getId(),
                             (bookCopy.getCheckoutRecord() != null) ? bookCopy.getCheckoutRecord().getMember().getId() : null,
-                            (bookCopy.getCheckoutRecord() != null) ? bookCopy.getCheckoutRecord().getMember().getFirstName() +" "+ bookCopy.getCheckoutRecord().getMember().getLastName() : null,
+                            (bookCopy.getCheckoutRecord() != null) ? bookCopy.getCheckoutRecord().getMember().getFirstName() + " " + bookCopy.getCheckoutRecord().getMember().getLastName() : null,
                             (bookCopy.getCheckoutRecord() != null) ? formatter.format(bookCopy.getCheckoutRecord().getCheckoutDate()) : null,
                             (bookCopy.getCheckoutRecord() != null) ? formatter.format(bookCopy.getCheckoutRecord().getDueDate()) : null,
                             returnDate,
