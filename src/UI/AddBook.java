@@ -3,6 +3,7 @@ package UI;
 import Business.Book.Book;
 import Business.Person.Address;
 import Business.Person.Author;
+import Business.Person.PersonFactory;
 import Business.StatusInfoWrapper;
 
 import javax.swing.*;
@@ -26,13 +27,13 @@ public class AddBook extends JFrame {
 
     private int borrowDuraration;
 
-    public AddBook(){
+    public AddBook() {
         setVisible(true);
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Add Book");
-        setSize(500, 400);
+        setSize(500, 500);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setContentPane(AddBookPane);
 
         list1.setSelectedIndex(0);
@@ -63,25 +64,15 @@ public class AddBook extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 String isbnValue = isbn.getText();
                 String name = bookName.getText();
-                int copies=Integer.valueOf(noOfCopies.getText());
+                int copies = Integer.valueOf(noOfCopies.getText());
                 List<String> authors = list1.getSelectedValuesList();
 
 
-                Address address = new Address("4th", "Fairfield", "IOWA", "52772");
                 List<Author> authorsObject = new ArrayList<>();
-                for (String a : authors) {
-                    authorsObject.add(new Author(a, "John", "011222333", address, "Master", "Good Author"));
+                for (String author : authors) {
+                    authorsObject.add(PersonFactory.generateAuthor(author, "", "011222333", "Master", "Good Author", "4th North", "Fairfield", "IOWA", "52557"));
                 }
-
-//                if (authorsObject.size() == 0) {
-//                    authorsObject.add(new Author("Author", "John", "011222333", address, "Master", "Good Author"));
-//
-//                }
-
-
-                System.out.println(authorsObject);
-
-                StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject,copies);
+                StatusInfoWrapper result = Book.addBook(isbnValue, name, borrowDuraration, authorsObject, copies);
                 JOptionPane.showMessageDialog(null, result.getMessage(), "Book Creation", result.getStatus() ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
                 isbn.setText("");
                 bookName.setText("");
@@ -90,8 +81,6 @@ public class AddBook extends JFrame {
             }
         });
     }
-
-
 
 
 }
