@@ -39,6 +39,8 @@ public class AddBook extends JFrame {
 
         buttonGroup.add(a21DaysRadioButton);
         buttonGroup.add(a7DaysRadioButton);
+        a21DaysRadioButton.setSelected(true);
+        borrowDuraration = 21;
 
         a21DaysRadioButton.addActionListener(new ActionListener() {
             @Override
@@ -89,20 +91,7 @@ public class AddBook extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        /*
-        While it is not mandatory to use EventQueue.invokeLater,
-        it is a best practice for all Swing applications to ensure
-        thread safety and avoid potential concurrency issues.
-         */
 
-
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                AddBook mf = new AddBook();
-            }
-        });
-    }
 
 
 }

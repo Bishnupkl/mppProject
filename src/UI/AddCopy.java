@@ -16,7 +16,7 @@ public class AddCopy extends JFrame {
 
     public AddCopy() {
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Add Book");
         setSize(500, 400);
         setLocationRelativeTo(null);
