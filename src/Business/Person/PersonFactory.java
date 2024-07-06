@@ -16,15 +16,4 @@ public final class PersonFactory {
     {
         return new User(id, password, userRoles);
     }
-
-    public static Author generateAuthor(String firstName,String lastName, String phoneNumber,  String credentials, String bio, String street, String city, String state, String zip)
-    {
-        Address address = new Address(street, city, state, zip);
-        return new Author(firstName, lastName, phoneNumber,address,credentials,bio);
-    }
-
-    public static Address generateAddress(String street, String city, String state, String zip)
-    {
-        return new Address(street, city, state,zip);
-    }
 }
