@@ -20,7 +20,7 @@ public class CheckoutRecordTable {
 
         f = new JFrame();
         f.setTitle("Checkout record");
-        String[] columnNames = { "ISBN", "book title", "copy number", "checkout date", "due date", "return date" };
+        String[] columnNames = { "ISBN", "Book Title", "Copy ID", "Checkout date", "Due date", "Return date" };
         String[][] data = new String[checkoutRecords.size()][];
 
         for (int i =0, n = checkoutRecords.size(); i < n; i++) {
