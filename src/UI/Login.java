@@ -62,8 +62,6 @@ public class Login extends JFrame {
 
     public static void main(String[] args) {
 
-
-
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Login mf = new Login();
