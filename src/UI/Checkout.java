@@ -1,7 +1,7 @@
 package UI;
 
 import Business.Person.Member;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

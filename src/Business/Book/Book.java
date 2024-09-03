@@ -1,13 +1,11 @@
 package Business.Book;
 
 import Business.Checkout.CheckoutRecord;
-import Business.MessageConstant;
-import Business.Person.Address;
+import Helper.HelperFactory;
+import Helper.MessageConstant;
 import Business.Person.Author;
-import Business.Person.Member;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 import DataAccess.BookDataAccess;
-import DataAccess.MemberDataAccess;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class Book implements Serializable {
         this.authors.add(newAuthor);
     }
 
-    private Book(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
+   Book(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors) {
         this.isbn = newIsbn;
         this.title = newTitle;
         this.borrowDuration = newBorrowDuration;
@@ -53,25 +51,20 @@ public class Book implements Serializable {
     public static StatusInfoWrapper checkBookExist(String isbn) {
         Book book = BookDataAccess.readBook(isbn);
         if (book == null) {
-            return new StatusInfoWrapper(false, null, MessageConstant.BOOK_NOT_FOUND);
+            return HelperFactory.generateStatusInfo(false, null, MessageConstant.BOOK_NOT_FOUND);
         } else {
-            return new StatusInfoWrapper(true, book, null);
+            return HelperFactory.generateStatusInfo(true, book, null);
         }
     }
 
     public static StatusInfoWrapper addBook(String newIsbn, String newTitle, int newBorrowDuration, List<Author> newAuthors,int copies) {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus() == false) {
-            Book newBook = new Book(newIsbn, newTitle, newBorrowDuration, newAuthors);
+            Book newBook = BookFactory.generateBook(newIsbn, newTitle, newBorrowDuration, newAuthors, copies);
             BookDataAccess.createNewBook(newBook);
-            int tmp=0;
-            while (tmp<copies){
-                Book.addCopy(newBook.getIsbn());
-                tmp++;
-            }
-            return new StatusInfoWrapper(true, null, "Create Book Successful");
+            return HelperFactory.generateStatusInfo(true, null, "Create Book Successful");
         } else {
-            return new StatusInfoWrapper(false, null, "Book already exist in the system");
+            return HelperFactory.generateStatusInfo(false, null, "Book already exist in the system");
         }
     }
 
@@ -79,20 +72,19 @@ public class Book implements Serializable {
         StatusInfoWrapper result = checkBookExist(newIsbn);
         if (result.getStatus()) {
             Book book = (Book) result.getValue();
-            book.setBookCopies(new BookCopy(book));
+            BookCopy copy = BookFactory.generateBookCopy(book);
+            book.setBookCopies(copy);
             BookDataAccess.createNewBookCopy(book);
-            return new StatusInfoWrapper(true, null, "Add Copy Successful");
+            return HelperFactory.generateStatusInfo(true, null, "Add Copy Successful");
         }
-        return new StatusInfoWrapper(true, null, "Cannot add copy");
+        return HelperFactory.generateStatusInfo(true, null, "Cannot add copy");
     }
 
     public static List<BookCopy> getBookCopies(String isbn) {
-
         StatusInfoWrapper result = checkBookExist(isbn);
         if (result.getStatus()) {
             return ((Book) result.getValue()).getBookCopies();
         }
-
         return null;
     }
 
@@ -103,17 +95,17 @@ public class Book implements Serializable {
     public static StatusInfoWrapper getAvailableCopy(String isbn) {
         Book book = BookDataAccess.readBook(isbn);
         if (book == null) {
-            return new StatusInfoWrapper(false, null, "Book does not exist in system");
+            return HelperFactory.generateStatusInfo(false, null, "Book does not exist in system");
         } else {
             List<BookCopy> copies = book.getBookCopies();
             for (BookCopy copy : copies) {
                 if (copy.getCheckoutRecord() == null) {
-                    return new StatusInfoWrapper(true, copy, "success");
+                    return HelperFactory.generateStatusInfo(true, copy, "success");
                 } else if (copy.getCheckoutRecord().getReturnDate() != null) {
-                    return new StatusInfoWrapper(true, copy, "success");
+                    return HelperFactory.generateStatusInfo(true, copy, "success");
                 }
             }
-            return new StatusInfoWrapper(false, null, "No Copy available");
+            return HelperFactory.generateStatusInfo(false, null, "No Copy available");
         }
     }
 

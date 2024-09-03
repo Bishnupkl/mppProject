@@ -8,7 +8,7 @@ import Business.Person.Member;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class BookDataAccess extends FileDataAccess {
+public final class BookDataAccess extends FileDataAccess {
     private static final String fileName = "book.bin";
     private static final BookDataAccess instance = new BookDataAccess();
     private BookDataAccess(){}

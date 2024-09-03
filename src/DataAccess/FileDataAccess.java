@@ -4,7 +4,7 @@ import java.io.*;
 
 public class FileDataAccess{
 
-    public Object read(String fileName) {
+    protected Object read(String fileName) {
         FileInputStream file = null;
         try {
             file = new FileInputStream(fileName);
@@ -25,7 +25,7 @@ public class FileDataAccess{
         }
     }
 
-    public void write(String fileName, Object obj) {
+    protected void write(String fileName, Object obj) {
         FileOutputStream file = null;
         ObjectOutputStream out = null;
         try {

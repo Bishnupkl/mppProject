@@ -1,8 +1,7 @@
 package UI;
 
 import Business.Book.Book;
-import Business.Book.BookCopy;
-import Business.StatusInfoWrapper;
+import Helper.StatusInfoWrapper;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,9 +15,9 @@ public class AddCopy extends JFrame {
 
     public AddCopy() {
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Add Book");
-        setSize(500, 400);
+        setSize(500, 200);
         setLocationRelativeTo(null);
         setResizable(false);
         setContentPane(addCopyPanel);

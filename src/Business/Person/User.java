@@ -15,7 +15,7 @@ public class User extends Person{
 
     private String password;
 
-    private User(String id, String password, List<UserRole> userRoles)
+    User(String id, String password, List<UserRole> userRoles)
     {
         super("","", "", null);
         this.id  = id;
@@ -33,7 +33,7 @@ public class User extends Person{
         List<User> users = new ArrayList<>();
         for(UserInfoWrapper info: defaultUsers)
         {
-            users.add(new User(info.id, info.password, info.userRoles));
+            users.add((User)PersonFactory.generateUser(info.id, info.password, info.userRoles));
         }
         UserDataAccess.addUsers(users);
     }
